@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  MapKit
+//  TurnByTurn
 //
 //  Created by Austin Potts on 12/3/19.
 //  Copyright © 2019 Lambda School. All rights reserved.

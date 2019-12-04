@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15404"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="TurnByTurn" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mXo-ZS-wai">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="151"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Turn left then 500 meters" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Y5V-Cz-BzG">
+                                        <rect key="frame" x="20" y="80" width="374" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="414" id="42q-ND-0sx"/>
+                                    <constraint firstAttribute="trailing" secondItem="Y5V-Cz-BzG" secondAttribute="trailing" constant="20" id="91f-3C-Nec"/>
+                                    <constraint firstItem="Y5V-Cz-BzG" firstAttribute="top" secondItem="mXo-ZS-wai" secondAttribute="top" constant="80" id="RMX-un-dcE"/>
+                                    <constraint firstItem="Y5V-Cz-BzG" firstAttribute="leading" secondItem="mXo-ZS-wai" secondAttribute="leading" constant="20" id="i5c-TO-7eK"/>
+                                    <constraint firstAttribute="height" constant="151" id="rD2-vt-YqM"/>
+                                </constraints>
+                            </view>
+                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="tmh-br-8sf">
+                                <rect key="frame" x="0.0" y="151" width="414" height="56"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="DLX-JV-r9r">
+                                <rect key="frame" x="0.0" y="207" width="414" height="689"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="mXo-ZS-wai" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="AUz-NQ-gCf"/>
+                            <constraint firstItem="DLX-JV-r9r" firstAttribute="top" secondItem="tmh-br-8sf" secondAttribute="bottom" id="Jdt-eJ-OYF"/>
+                            <constraint firstItem="tmh-br-8sf" firstAttribute="top" secondItem="mXo-ZS-wai" secondAttribute="bottom" id="PG4-NE-ApP"/>
+                            <constraint firstAttribute="bottom" secondItem="DLX-JV-r9r" secondAttribute="bottom" id="PLV-UO-62m"/>
+                            <constraint firstItem="tmh-br-8sf" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="cx6-QT-fC2"/>
+                            <constraint firstItem="DLX-JV-r9r" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="g1g-6S-w5O"/>
+                            <constraint firstItem="DLX-JV-r9r" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gia-Nm-wJT"/>
+                            <constraint firstItem="mXo-ZS-wai" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="kwv-fB-Wen"/>
+                            <constraint firstItem="mXo-ZS-wai" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="m5C-vl-kvR"/>
+                            <constraint firstItem="tmh-br-8sf" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="pzu-QM-wRB"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                    </view>
+                    <connections>
+                        <outlet property="directionsLabel" destination="Y5V-Cz-BzG" id="XH3-GK-hEt"/>
+                        <outlet property="mapView" destination="DLX-JV-r9r" id="Ub7-eG-Dhb"/>
+                        <outlet property="searchBar" destination="tmh-br-8sf" id="KLc-fH-i6j"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="100.44642857142857"/>
+        </scene>
+    </scenes>
+</document>
