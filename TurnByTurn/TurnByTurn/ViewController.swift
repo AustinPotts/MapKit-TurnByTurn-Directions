@@ -18,6 +18,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     
     let locationManager = CLLocationManager()
+    var currentCoordinate: CLLocationCoordinate2D!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,7 +37,10 @@ class ViewController: UIViewController {
 extension ViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        print("")
+        manager.stopUpdatingLocation()
+        guard let currentLocation = locations.first else {return}
+        currentCoordinate = currentLocation.coordinate
+        mapView.userTrackingMode = .followWithHeading
     }
     
 }
