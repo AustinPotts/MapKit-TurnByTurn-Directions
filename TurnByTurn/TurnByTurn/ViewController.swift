@@ -29,6 +29,10 @@ class ViewController: UIViewController {
         locationManager.startUpdatingLocation()
         
     }
+    
+    func getDirection(to destination: MKPlacemark){
+        
+    }
 
 
 }
@@ -49,7 +53,23 @@ extension ViewController: CLLocationManagerDelegate {
 extension ViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("")
+        searchBar.endEditing(true)
+        let localSearchRequest = MKLocalSearch.Request()
+        localSearchRequest.naturalLanguageQuery = searchBar.text
+        let region = MKCoordinateRegion(center: currentCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
+        localSearchRequest.region = region
+        let localSearch = MKLocalSearch(request: localSearchRequest)
+        localSearch.start { (response, _) in
+            guard let response = response else {return}
+            
+            guard let firstMapItem = response.mapItems.first else {return}
+            
+            self.getDirection(to: firstMapItem.placemark)
+            
+            
+        }
+        
+        
     }
     
 }
