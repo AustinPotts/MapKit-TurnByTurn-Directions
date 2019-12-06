@@ -17,6 +17,8 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    var steps = [MKRoute.Step]()
+    
     let locationManager = CLLocationManager()
     var currentCoordinate: CLLocationCoordinate2D!
     
@@ -27,10 +29,34 @@ class ViewController: UIViewController {
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.startUpdatingLocation()
+        searchBar.delegate = self
         
     }
     
-    func getDirection(to destination: MKPlacemark){
+    func getDirection(to destination: MKMapItem){
+        
+        let sourcePlacemark = MKPlacemark(coordinate: currentCoordinate)
+        
+        let sourceMapItem = MKMapItem(placemark: sourcePlacemark)
+        
+        let directionsRequest = MKDirections.Request()
+        directionsRequest.source = sourceMapItem
+        directionsRequest.destination = destination
+        directionsRequest.transportType = .automobile
+        
+        let directions = MKDirections(request: directionsRequest)
+        directions.calculate { (response, _) in
+            guard let response = response else {return}
+            
+            guard let primaryRoute = response.routes.first else {return}
+            
+            self.mapView.addOverlay(primaryRoute.polyline)
+            
+            
+            self.steps = primaryRoute.steps
+            
+            
+        }
         
     }
 
@@ -64,7 +90,7 @@ extension ViewController: UISearchBarDelegate {
             
             guard let firstMapItem = response.mapItems.first else {return}
             
-            self.getDirection(to: firstMapItem.placemark)
+            self.getDirection(to: firstMapItem)
             
             
         }
@@ -77,6 +103,14 @@ extension ViewController: UISearchBarDelegate {
 
 extension ViewController: MKMapViewDelegate {
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        
+        if overlay is MKPolyline {
+            let renderer = MKPolylineRenderer(overlay: overlay)
+            renderer.strokeColor = .blue
+            renderer.lineWidth = 10
+            return renderer 
+        }
+        
         return MKOverlayRenderer()
     }
 }
