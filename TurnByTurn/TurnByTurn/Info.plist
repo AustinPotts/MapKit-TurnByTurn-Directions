@@ -79,7 +79,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysUsageDescription</key>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>ALWAYS GETTING YOUR LOCATION</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>WHEN IN USE</string>
