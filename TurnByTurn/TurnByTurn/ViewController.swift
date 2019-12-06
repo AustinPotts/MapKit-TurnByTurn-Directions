@@ -17,9 +17,16 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var mapView: MKMapView!
     
+    let locationManager = CLLocationManager()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        locationManager.requestAlwaysAuthorization()
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
+        locationManager.startUpdatingLocation()
+        
     }
 
 
