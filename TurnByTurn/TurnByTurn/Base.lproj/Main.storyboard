@@ -38,7 +38,7 @@
                                 <rect key="frame" x="0.0" y="151" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
-                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsPointsOfInterest="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DLX-JV-r9r">
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DLX-JV-r9r">
                                 <rect key="frame" x="0.0" y="207" width="414" height="689"/>
                             </mapView>
                         </subviews>

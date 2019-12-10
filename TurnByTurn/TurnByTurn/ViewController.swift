@@ -87,17 +87,16 @@ extension ViewController: UISearchBarDelegate {
         let localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (response, _) in
             guard let response = response else {return}
+            print(response.mapItems)
             
             guard let firstMapItem = response.mapItems.first else {return}
             
             self.getDirection(to: firstMapItem)
-            
-            
-        }
-        
-        
-    }
     
+        }
+    
+    }
+
 }
 
 
