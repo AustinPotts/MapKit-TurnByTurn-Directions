@@ -30,6 +30,7 @@ class ViewController: UIViewController {
         locationManager.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         locationManager.startUpdatingLocation()
         searchBar.delegate = self
+        mapView.delegate = self
         
     }
     
@@ -85,13 +86,16 @@ extension ViewController: UISearchBarDelegate {
         let region = MKCoordinateRegion(center: currentCoordinate, span: MKCoordinateSpan(latitudeDelta: 0.1, longitudeDelta: 0.1))
         localSearchRequest.region = region
         let localSearch = MKLocalSearch(request: localSearchRequest)
-        localSearch.start { (response, _) in
+        localSearch.start { (response, _) in           //FIXME: MKLocalSearch.start not getting response
             guard let response = response else {return}
             print(response.mapItems)
             
             guard let firstMapItem = response.mapItems.first else {return}
             
-            self.getDirection(to: firstMapItem)
+            DispatchQueue.main.async {
+                self.getDirection(to: firstMapItem)
+            }
+            
     
         }
     
