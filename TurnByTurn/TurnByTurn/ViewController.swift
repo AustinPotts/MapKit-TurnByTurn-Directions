@@ -63,6 +63,9 @@ class ViewController: UIViewController {
                 
                 let region = CLCircularRegion(center: step.polyline.coordinate, radius: 20, identifier: "\(i)")
                 self.locationManager.startMonitoring(for: region)
+                
+                let cirlce = MKCircle(center: region.center, radius: region.radius)
+                self.mapView.addOverlay(cirlce)
             }
             
         }
@@ -120,6 +123,14 @@ extension ViewController: MKMapViewDelegate {
             renderer.strokeColor = .blue
             renderer.lineWidth = 10
             return renderer 
+        }
+        
+        if overlay is MKCircle {
+            let renderer = MKCircleRenderer(overlay: overlay)
+            renderer.strokeColor = .red
+            renderer.fillColor = .red
+            renderer.alpha = 0.5
+            return renderer
         }
         
         return MKOverlayRenderer()
