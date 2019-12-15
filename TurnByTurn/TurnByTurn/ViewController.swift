@@ -53,9 +53,17 @@ class ViewController: UIViewController {
             
             self.mapView.addOverlay(primaryRoute.polyline)
             
+            self.locationManager.monitoredRegions.forEach({self.locationManager.startMonitoring(for: $0)})
             
             self.steps = primaryRoute.steps
-            
+            for i in 0 ..< primaryRoute.steps.count {
+                let step = primaryRoute.steps[i]
+                print(step.instructions)
+                print(step.distance)
+                
+                let region = CLCircularRegion(center: step.polyline.coordinate, radius: 20, identifier: "\(i)")
+                self.locationManager.startMonitoring(for: region)
+            }
             
         }
         
@@ -88,7 +96,7 @@ extension ViewController: UISearchBarDelegate {
         let localSearch = MKLocalSearch(request: localSearchRequest)
         localSearch.start { (response, _) in           //FIXME: MKLocalSearch.start not getting response
             guard let response = response else {return}
-            print(response.mapItems)
+            //print(response.mapItems)
             
             guard let firstMapItem = response.mapItems.first else {return}
             
